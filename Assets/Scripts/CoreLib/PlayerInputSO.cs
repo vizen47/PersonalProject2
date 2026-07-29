@@ -8,8 +8,6 @@ namespace CoreLib
     public class PlayerInputSO : ScriptableObject, Controls.IPlayerActions
     {
         private Controls _controls;
-        
-        public Action<bool> OnAttackKeyPressed;
 
         public Vector2 MoveInput { get; private set; }
         public Vector2 AimInput { get; private set; }
@@ -35,14 +33,6 @@ namespace CoreLib
         public void OnMove(InputAction.CallbackContext context)
         {
             MoveInput = context.ReadValue<Vector2>();
-        }
-
-        public void OnAttack(InputAction.CallbackContext context)
-        {
-            if (context.performed)
-                OnAttackKeyPressed?.Invoke(true);
-            else
-                OnAttackKeyPressed?.Invoke(false);
         }
 
         public void OnAim(InputAction.CallbackContext context)

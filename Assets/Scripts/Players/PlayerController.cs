@@ -2,32 +2,35 @@ using Agents;
 using CoreLib;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+namespace Players
 {
-    [field: SerializeField] public PlayerInputSO PlayerInput { get; private set; }
-
-    #region Components
-
-    public AgentMovement AgentMovement { get; private set; }
-    public AgentAim AgentAim { get; private set; }
-    public CheckWall[] WallCheckers {get; private set;}
-    public SurfaceFollowModule SurfaceFollowModule { get; private set; }
-    
-    #endregion
-
-    private void Awake()
+    public class PlayerController : MonoBehaviour
     {
-        AgentMovement = GetComponentInChildren<AgentMovement>();
-        AgentAim = GetComponentInChildren<AgentAim>();
-        SurfaceFollowModule =  GetComponentInChildren<SurfaceFollowModule>();
-        WallCheckers = GetComponentsInChildren<CheckWall>();
+        [field: SerializeField] public PlayerInputSO PlayerInput { get; private set; }
         
-        AgentAim.Init(this);
-        SurfaceFollowModule.SetWallCheckers(WallCheckers);
-    }
+        #region Components
+
+        public AgentMovement AgentMovement { get; private set; }
+        public AgentAim AgentAim { get; private set; }
+        public CheckWall[] WallCheckers {get; private set;}
+        public SurfaceFollowModule SurfaceFollowModule { get; private set; }
     
-    private void Update()
-    {
-        AgentMovement?.SetMovementInput(PlayerInput.MoveInput.x);
+        #endregion
+
+        private void Awake()
+        {
+            AgentMovement = GetComponentInChildren<AgentMovement>();
+            AgentAim = GetComponentInChildren<AgentAim>();
+            SurfaceFollowModule =  GetComponentInChildren<SurfaceFollowModule>();
+            WallCheckers = GetComponentsInChildren<CheckWall>();
+        
+            AgentAim.Init(this);
+            SurfaceFollowModule.SetWallCheckers(WallCheckers);
+        }
+    
+        private void Update()
+        {
+            AgentMovement?.SetMovementInput(PlayerInput.MoveInput.x);
+        }
     }
 }

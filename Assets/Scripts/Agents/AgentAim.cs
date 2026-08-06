@@ -1,4 +1,5 @@
 using CoreLib;
+using Players;
 using UnityEngine;
 
 namespace Agents
@@ -29,6 +30,8 @@ namespace Agents
 
         private void RotateFirePos()
         {
+            if (playerController == null) return;
+            
             if (playerController.PlayerInput.AimRangeInput)
             {
                 Vector3 aimPos = playerController.PlayerInput.AimInput;

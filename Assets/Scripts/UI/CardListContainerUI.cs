@@ -15,9 +15,8 @@ namespace UI
         [SerializeField] private float duration = 0.5f;
         
         private readonly List<RectTransform> cardList = new List<RectTransform>();
-        private CardHoverUI cardHoverUI;
         
-        private void ArrangeCards()
+        public void ArrangeCards()
         {
             cardList.Clear();
             foreach (Transform child in transform)

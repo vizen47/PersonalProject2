@@ -13,7 +13,7 @@
             private Vector2 basePosition;
             private RectTransform rect;
             private Canvas _canvas;
-            private bool _isHovered;
+            public bool IsHovered { get; private set; }
             
             private void CacheComponents()
             {
@@ -30,7 +30,7 @@
                 
                 basePosition = position;
                 
-                if (!_isHovered)
+                if (!IsHovered)
                     rect.anchoredPosition = basePosition;
             }
             
@@ -38,7 +38,8 @@
             {
                 CacheComponents();
                 
-                _isHovered = true;
+                IsHovered = true;
+                UIManager.Instance.CheckIsHoveringCard(IsHovered);
                 
                 rect.DOKill();
                 _canvas.overrideSorting = true;
@@ -48,8 +49,9 @@
 
             public void OnPointerExit(PointerEventData eventData)
             {
-                _isHovered = false;
-                
+                IsHovered = false;
+                UIManager.Instance.CheckIsHoveringCard(IsHovered);
+
                 rect.DOKill();
                 _canvas.overrideSorting = false;
                 rect.DOAnchorPos(basePosition, duration).SetEase(Ease.OutCubic);

@@ -14,20 +14,21 @@ namespace Combat.Bullets
         [SerializeField] private PoolItemSO impactEffect;
 
         public GameObject GameObject => gameObject;
-        
+
+        protected DamageCaster DamageCaster;
         protected Rigidbody2D _rigid;
         protected float _firePower; // 발사 파워는 마우스로 조절된 값을 받아서 써야함.
         protected float _lifeTime = 5f;
         
         [Header("Bullet Settings")]
-        protected int _damage;
-        protected float _knockbackPower;
+        [field: SerializeField] public int Damage {get; private set;}
         protected Vector3 _fireDirection;
         
         protected override void Awake()
         {
             base.Awake();
             _rigid = GetComponent<Rigidbody2D>();
+            DamageCaster = GetComponentInChildren<DamageCaster>();
         }
 
         protected virtual void Fire()
@@ -35,10 +36,8 @@ namespace Combat.Bullets
             _rigid.AddForce(_fireDirection * _firePower, ForceMode2D.Impulse);
         }
         
-        public override void InitAndFire(Transform firePos, int damage, float knockbackPower, float firePower)
+        public override void InitAndFire(Transform firePos, float firePower)
         {
-            _damage = damage;
-            _knockbackPower = knockbackPower;
             _firePower = firePower;
             
             transform.SetPositionAndRotation(firePos.position, firePos.rotation);
@@ -60,9 +59,10 @@ namespace Combat.Bullets
                 EffectPlayer effect = PoolManager.Instance.Pop(impactEffect.ItemName) as EffectPlayer;
                 effect.SetPositionAndPlay(transform.position);
             }
-            onExplosion?.Invoke();
-            // 닿았을 때 이펙트
+            onExplosion?.Invoke(); // 닿았을 때 이펙트
 
+            DamageCaster.OnDamageCast();
+            
             DestroyBullet();
         }
         

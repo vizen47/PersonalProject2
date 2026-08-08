@@ -81,8 +81,6 @@ namespace Players
             projectile.InitAndFire // 현재 쏠 차례가 된 총알의 정보(데미지, 힘, 넉백의 정도)를 가져와서 쓴다.
             (
                 firePos: firePos,
-                damage: 1,
-                knockbackPower: 0,
                 firePower: CurrentPower.Value * 20
             ); // 테스트 용 임시 하드코딩
         

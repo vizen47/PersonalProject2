@@ -13,7 +13,7 @@ namespace Combat
             Rigid =  GetComponent<Rigidbody2D>();
         }
         
-        public abstract void InitAndFire(Transform firePos, int damage, float knockbackPower, float firePower);
+        public abstract void InitAndFire(Transform firePos, float firePower);
 
         public virtual void ResetItem()
         {

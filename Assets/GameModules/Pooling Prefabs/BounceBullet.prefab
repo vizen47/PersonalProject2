@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5977431758064283478}
   - component: {fileID: 1758993148045674933}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: TrailEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 1956898117703022430}
   - component: {fileID: 6672104912309505958}
   - component: {fileID: 4654701609473629838}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BounceBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e647b8be0f8b41f0b85d3e251c1b762c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onExplosion:
+    m_PersistentCalls:
+      m_Calls: []
   <PoolItem>k__BackingField: {fileID: 11400000, guid: 0bbb4d581ae634848bd843eee4e3b120, type: 2}
+  impactEffect: {fileID: 0}
   filter:
     useTriggers: 0
     useLayerMask: 1
@@ -339,7 +343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7266503639763670175}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Feedback
   m_TagString: Untagged
   m_Icon: {fileID: 0}

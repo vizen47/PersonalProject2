@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Systems
+namespace Systems.Pooling
 {
     [CreateAssetMenu(fileName = "Pooling list", menuName = "SO/Pool/list", order = 0)]
     public class PoolingListSO : ScriptableObject

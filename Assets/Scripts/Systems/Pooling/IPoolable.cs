@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Systems
+namespace Systems.Pooling
 {
     public interface IPoolable
     {

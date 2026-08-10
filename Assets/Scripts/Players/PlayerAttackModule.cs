@@ -2,7 +2,7 @@ using Agents;
 using Combat;
 using Combat.Bullets;
 using CoreLib;
-using Systems;
+using Systems.Pooling;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -14,7 +14,7 @@ namespace Players
         public UnityEvent onFire;
         [SerializeField] private PoolItemSO defaultBullet;
     
-        [SerializeField] private AgentAim agentAim;
+        [SerializeField] private PlayerAimController playerAimController;
     
         [Header("Parts")]
         [SerializeField] private GameObject attackRange;

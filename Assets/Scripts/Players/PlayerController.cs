@@ -11,7 +11,7 @@ namespace Players
         #region Components
 
         public AgentMovement AgentMovement { get; private set; }
-        public AgentAim AgentAim { get; private set; }
+        public PlayerAimController PlayerAimController { get; private set; }
         public CheckWall[] WallCheckers {get; private set;}
         public SurfaceFollowModule SurfaceFollowModule { get; private set; }
     
@@ -20,11 +20,11 @@ namespace Players
         private void Awake()
         {
             AgentMovement = GetComponentInChildren<AgentMovement>();
-            AgentAim = GetComponentInChildren<AgentAim>();
+            PlayerAimController = GetComponentInChildren<PlayerAimController>();
             SurfaceFollowModule =  GetComponentInChildren<SurfaceFollowModule>();
             WallCheckers = GetComponentsInChildren<CheckWall>();
         
-            AgentAim.Init(this);
+            PlayerAimController.Init(this);
             SurfaceFollowModule.SetWallCheckers(WallCheckers);
         }
     

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Systems
+namespace Systems.Pooling
 {
     [CreateAssetMenu(fileName = "Pool Item", menuName = "SO/Pool/Item", order = 0)]
     public class PoolItemSO : ScriptableObject

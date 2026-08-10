@@ -1,4 +1,3 @@
-using System.Collections;
 using Combat.Bullets;
 using Systems;
 using UnityEngine;
@@ -8,19 +7,32 @@ namespace Combat
     public class DamageCaster : MonoBehaviour
     {
         [SerializeField] private float attackRange;
+        private Bullet bullet; 
         private int damage;
 
         private void Awake()
+        {
+            gameObject.SetActive(false);
+            bullet = GetComponentInParent<Bullet>();
+            damage = bullet.Damage;
+        }
+
+        private void OnEnable()
         {
             gameObject.SetActive(false);
         }
 
         public void OnDamageCast()
         {
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, attackRange);
-            if (hit.TryGetComponent(out IDamageable damageable))
-            {
-                damageable.ApplyDamage(damage);
+            gameObject.SetActive(true);
+            
+            Collider2D[] hit = Physics2D.OverlapCircleAll(transform.position, attackRange);
+            foreach (Collider2D p in hit)
+            {   
+                if (p.TryGetComponent(out IDamageable damageable))
+                {
+                    damageable.ApplyDamage(damage);
+                }
             }
         }
         

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Agents
 {
-    public class AgentAim : MonoBehaviour
+    public class PlayerAimController : MonoBehaviour
     {
         [Header("Settings")] [SerializeField] private Transform firePosCenter;
 

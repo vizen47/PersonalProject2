@@ -1,6 +1,8 @@
 using System.Collections;
 using Combat.Bullets;
 using Systems;
+using Systems.Pooling;
+using Systems.TurnSystem;
 using TMPro;
 using UI;
 using UnityEngine;
@@ -18,6 +20,7 @@ namespace Combat.Cards
         [SerializeField] private TextMeshProUGUI titleText;
         [SerializeField] private TextMeshProUGUI descriptionText;
         [SerializeField] private PoolItemSO bullet;
+        private Vector4 invisibleCardValue;
         
         private CardHoverUI cardHoverUI;
         
@@ -27,23 +30,27 @@ namespace Combat.Cards
         private void Awake()
         {
             cardHoverUI = GetComponent<CardHoverUI>();
-        }
-        
-        public void ChangeCardData(Sprite cardIcon, string cardTitle, string cardDescription)
-        {
-            icon.sprite = cardIcon;
-            titleText.text = cardTitle;
-            descriptionText.text = cardDescription;
+            invisibleCardValue =  new Vector4(0f, 0f, 0f, 0f);
         }
 
         private void Update()
         {
+            if (TurnManager.Instance.CurrentState.Value != TurnManager.TurnState.PlayerTurn) return;
+            
             if (Keyboard.current.yKey.wasPressedThisFrame && cardHoverUI.IsHovered)
             {
                 onCardUse?.Invoke();
-                
+
+                InvisibleCardText();
                 BulletManager.Instance.SetBullet(bullet);
             }
+        }
+
+        private void InvisibleCardText()
+        {
+            icon.color = invisibleCardValue;
+            titleText.text = "";
+            descriptionText.text = "";
         }
     }
 }

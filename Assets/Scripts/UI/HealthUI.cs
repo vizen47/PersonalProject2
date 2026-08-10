@@ -1,8 +1,7 @@
-﻿using System;
-using Agents;
-using DG.Tweening;
+﻿using Agents;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace UI
 {
@@ -11,17 +10,28 @@ namespace UI
         [SerializeField] private HealthModule health;
         
         private Slider healthSlider;
-        private int healthValue;
         
         private void Awake()
         {
             healthSlider = GetComponent<Slider>();
         }
-        
-        public void SetHealthUI()
+
+        private void OnEnable()
         {
-            healthValue = health.CurrentHealth * 1 / 100;
-            healthSlider.DOValue(healthValue, 1).SetEase(Ease.InOutCubic);
+            health.CurrentHealth.OnValueChanged += HandleChangeHealth;
+            
+            healthSlider.value = (float)health.CurrentHealth.Value / health.MaxHealth;
+        }
+        
+        private void OnDisable()
+        {
+            health.CurrentHealth.OnValueChanged -= HandleChangeHealth;
+        }
+        
+        private void HandleChangeHealth(int prev, int next)
+        {
+            float ratio = (float)next / health.MaxHealth;
+            healthSlider.DOValue(ratio, 1).SetEase(Ease.InOutCubic);
         }
     }
 }

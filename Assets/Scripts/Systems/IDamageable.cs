@@ -1,8 +1,10 @@
-﻿namespace Systems
+﻿using CoreLib;
+
+namespace Systems
 {
     public interface IDamageable
     {
-        int CurrentHealth { get; }
+        NotifyValue<int> CurrentHealth { get; set; }
         int MaxHealth { get; }
         void ApplyDamage(int amount);
     }

@@ -1,6 +1,7 @@
-using System.Xml;
 using Effects;
 using Systems;
+using Systems.Pooling;
+using Systems.TurnSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -18,7 +19,8 @@ namespace Combat.Bullets
         protected DamageCaster DamageCaster;
         protected Rigidbody2D _rigid;
         protected float _firePower; // 발사 파워는 마우스로 조절된 값을 받아서 써야함.
-        protected float _lifeTime = 5f;
+        public float _lifeTime = 5f;
+        public float _timer = 0f;
         
         [Header("Bullet Settings")]
         [field: SerializeField] public int Damage {get; private set;}
@@ -29,6 +31,19 @@ namespace Combat.Bullets
             base.Awake();
             _rigid = GetComponent<Rigidbody2D>();
             DamageCaster = GetComponentInChildren<DamageCaster>();
+        }
+
+        protected virtual void OnEnable()
+        {
+            _timer = 0f;
+        }
+
+        protected virtual void Update()
+        {
+            _timer += Time.deltaTime;
+            
+            if (_timer >= _lifeTime)
+                DestroyBullet();
         }
 
         protected virtual void Fire()
@@ -68,6 +83,11 @@ namespace Combat.Bullets
         
         protected virtual void DestroyBullet()
         {
+            if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.PlayerTurn)
+                TurnManager.Instance.EndPlayerTurn();
+            else if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.EnemyTurn)
+                TurnManager.Instance.EndEnemyTurn();
+            
             PoolManager.Instance.Push(this);
         }
     }

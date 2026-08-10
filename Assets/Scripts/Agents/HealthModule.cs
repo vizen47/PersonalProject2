@@ -1,4 +1,5 @@
-﻿using Systems;
+﻿using CoreLib;
+using Systems;
 using UnityEngine;
 
 namespace Agents
@@ -7,7 +8,8 @@ namespace Agents
     {
         private const int DefaultHealth = 100;
         
-        [field: SerializeField] public int CurrentHealth { get; private set; }
+        // [field: SerializeField] public int CurrentHealth { get; private set; }
+        public NotifyValue<int> CurrentHealth { get; set; } = new NotifyValue<int>();
         [field: SerializeField] public int MaxHealth { get; private set; } = DefaultHealth;
 
         private HealthVisual healthVisual;
@@ -19,20 +21,20 @@ namespace Agents
 
         private void Start()
         {            
-            CurrentHealth = MaxHealth;
+            CurrentHealth.Value = MaxHealth;
         }
         
         public void ApplyDamage(int amount)
         {
-            CurrentHealth -= amount;
-            CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+            CurrentHealth.Value -= amount;
+            CurrentHealth.Value = Mathf.Clamp(CurrentHealth.Value, 0, MaxHealth);
 
             if (healthVisual != null)
             {
 #if UNITY_EDITOR
-                Debug.Log($"{gameObject.transform.root.name}의 체력: {CurrentHealth}");
+                Debug.Log($"{gameObject.transform.root.name}의 체력: {CurrentHealth.Value}");
 #endif
-                healthVisual.SetVisualHealthBar(CurrentHealth);
+                healthVisual.SetVisualHealthBar(CurrentHealth.Value);
             }
         }
     }

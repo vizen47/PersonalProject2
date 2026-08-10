@@ -2,7 +2,7 @@
 using CoreLib;
 using UnityEngine;
 
-namespace Systems
+namespace Systems.Pooling
 {
     public class PoolManager : MonoSingleton<PoolManager>
     {

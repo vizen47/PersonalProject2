@@ -3,6 +3,7 @@ using Combat;
 using Combat.Bullets;
 using CoreLib;
 using Systems.Pooling;
+using Systems.TurnSystem;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -15,7 +16,8 @@ namespace Players
         [SerializeField] private PoolItemSO defaultBullet;
     
         [SerializeField] private PlayerAimController playerAimController;
-    
+        [SerializeField] private PlayerMovement playerMovement;        
+        
         [Header("Parts")]
         [SerializeField] private GameObject attackRange;
         [SerializeField] private GameObject attackReach;
@@ -23,7 +25,9 @@ namespace Players
         private Camera _camera;
 
         public readonly NotifyValue<float> CurrentPower = new NotifyValue<float>();
-    
+
+        private bool _attacked;
+        
         private void Awake()
         {
             _camera = Camera.main;
@@ -63,6 +67,8 @@ namespace Players
             }
         }
 
+        public void InitPlayerAttacked() => _attacked = false;
+        
         private void ShowAttackRange()
         {
             attackReach.transform.localScale = new Vector3(CurrentPower.Value,1, 1);
@@ -70,6 +76,10 @@ namespace Players
 
         public void Shoot()
         {
+            if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.EnemyTurn || _attacked ||
+                TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose ||
+                TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
+            
             // Projectile projectile =
             //     PoolManager.Instance.Pop(bullet.list[1].ItemName) as Projectile;
         
@@ -81,12 +91,15 @@ namespace Players
             projectile.InitAndFire // 현재 쏠 차례가 된 총알의 정보(데미지, 힘, 넉백의 정도)를 가져와서 쓴다.
             (
                 firePos: firePos,
-                firePower: CurrentPower.Value * 20
+                firePower: CurrentPower.Value * 25
             ); // 테스트 용 임시 하드코딩
         
             onFire?.Invoke();
 
             BulletManager.Instance.SetBullet(defaultBullet);
+            TurnManager.Instance.StartAction();
+            _attacked = true;
+            playerMovement.FalseCanMove();
         }
     }
 }

@@ -1,23 +1,20 @@
-using Agents;
+using Players;
 using UnityEngine;
 
-namespace Effects
+public class GroundParticle : MonoBehaviour
 {
-    public class GroundParticle : MonoBehaviour
-    {
-        [SerializeField] private AgentMovement agentMovement;
-        [SerializeField] private GameObject particleObj;
+    [SerializeField] private PlayerMovement playerMovement;
+    [SerializeField] private GameObject particleObj;
         
-        private void Update()
+    private void Update()
+    {
+        if (playerMovement.Velocity.Value != Vector2.zero)
         {
-            if (agentMovement.Velocity.Value != Vector2.zero)
-            {
-                particleObj.SetActive(true);
-            }
-            else
-            {
-                particleObj.SetActive(false);
-            }
+            particleObj.SetActive(true);
+        }
+        else
+        {
+            particleObj.SetActive(false);
         }
     }
 }

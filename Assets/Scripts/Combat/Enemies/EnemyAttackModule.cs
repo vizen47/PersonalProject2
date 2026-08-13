@@ -26,10 +26,11 @@ namespace Combat.Enemies
             if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.EnemyTurn)
             {
                 RotateRangeTrm();
+                _bulletIsDestroyed = false;
                 yield return new WaitForSeconds(rotateSpeed);
                 Shoot();
             }
-            
+                
             yield return new WaitUntil(() => _bulletIsDestroyed);
         }
         
@@ -44,7 +45,12 @@ namespace Combat.Enemies
         public void Shoot()
         {
             Projectile projectile = PoolManager.Instance.Pop(setBullet.ItemName) as Projectile;
-            if (projectile == null) { _bulletIsDestroyed = true; return; }
+            
+            if (projectile == null)
+            {
+                _bulletIsDestroyed = true;
+                return;
+            }
 
             projectile.InitAndFire(firePos: firePos, firePower: 50);
 
@@ -56,7 +62,7 @@ namespace Combat.Enemies
 
         private void OnBulletFinished()
         {
-            _bulletIsDestroyed = false;
+            _bulletIsDestroyed = true;
         }
     }
 }

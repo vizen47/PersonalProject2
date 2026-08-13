@@ -1,16 +1,12 @@
+using CoreLib;
+using Players;
 using UnityEngine;
 
 namespace Systems
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoSingleton<GameManager>
     {
-        public static GameManager Instance;
-
         public Transform playerTrm;
-        
-        private void Awake()
-        {
-            Instance = this;
-        }
+        public FuelSystem fuelSystem;
     }
 }

@@ -2,12 +2,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 
 namespace UI
 {
     public class HealthUI : MonoBehaviour
     {
         [SerializeField] private HealthModule health;
+        [SerializeField] private TextMeshProUGUI healthText;
         
         private Slider healthSlider;
         
@@ -32,6 +34,7 @@ namespace UI
         {
             float ratio = (float)next / health.MaxHealth;
             healthSlider.DOValue(ratio, 1).SetEase(Ease.InOutCubic);
+            healthText.SetText(next + " / " + health.MaxHealth);
         }
     }
 }

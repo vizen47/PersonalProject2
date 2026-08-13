@@ -1,6 +1,5 @@
-using System.Collections;
+using System;
 using Combat.Bullets;
-using Systems;
 using Systems.Pooling;
 using Systems.TurnSystem;
 using TMPro;
@@ -23,19 +22,20 @@ namespace Combat.Cards
         private Vector4 invisibleCardValue;
         
         private CardHoverUI cardHoverUI;
-        
-        // 자기 자신은 사라지고
-        // 카드 능력 리스트에 추가. 그리고 사라지는 효과 실행(onCardUse)
-
+            
         private void Awake()
         {
             cardHoverUI = GetComponent<CardHoverUI>();
             invisibleCardValue =  new Vector4(0f, 0f, 0f, 0f);
         }
 
+        private void Start() => onCardUse.AddListener(UsePlayerTurn);
+
+        private void OnDestroy() => onCardUse.RemoveListener(UsePlayerTurn);
+
         private void Update()
         {
-            if (TurnManager.Instance.CurrentState.Value != TurnManager.TurnState.PlayerTurn) return;
+            if (TurnManager.Instance.CurrentState.Value != TurnManager.TurnState.PlayerTurn || TurnManager.Instance.IsActing) return;
             
             if (Keyboard.current.yKey.wasPressedThisFrame && cardHoverUI.IsHovered)
             {
@@ -46,6 +46,11 @@ namespace Combat.Cards
             }
         }
 
+        private void UsePlayerTurn()
+        {
+            TurnManager.Instance.StartAction();
+        }
+        
         private void InvisibleCardText()
         {
             icon.color = invisibleCardValue;

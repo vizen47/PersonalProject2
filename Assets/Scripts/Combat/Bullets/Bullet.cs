@@ -1,4 +1,5 @@
 using Effects;
+using Players;
 using Systems;
 using Systems.Pooling;
 using Systems.TurnSystem;
@@ -25,12 +26,14 @@ namespace Combat.Bullets
         [Header("Bullet Settings")]
         [field: SerializeField] public int Damage {get; private set;}
         protected Vector3 _fireDirection;
+        private BulletScreen  _bulletScreen;
         
         protected override void Awake()
         {
             base.Awake();
             _rigid = GetComponent<Rigidbody2D>();
             DamageCaster = GetComponentInChildren<DamageCaster>();
+            _bulletScreen = GetComponentInChildren<BulletScreen>();
         }
 
         protected virtual void OnEnable()
@@ -42,7 +45,7 @@ namespace Combat.Bullets
         {
             _timer += Time.deltaTime;
             
-            if (_timer >= _lifeTime)
+            if (_timer >= _lifeTime || _bulletScreen.IsOffscreen())
                 DestroyBullet();
         }
 
@@ -84,10 +87,13 @@ namespace Combat.Bullets
         protected virtual void DestroyBullet()
         {
             if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.PlayerTurn)
+            {
                 TurnManager.Instance.EndPlayerTurn();
-            else if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.EnemyTurn)
-                TurnManager.Instance.EndEnemyTurn();
-            
+                TurnManager.Instance.StopAction();
+                
+                GameManager.Instance.fuelSystem.Init();
+            }
+
             PoolManager.Instance.Push(this);
         }
     }

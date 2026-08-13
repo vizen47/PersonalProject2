@@ -1,30 +1,25 @@
-using System;
 using CoreLib;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+namespace UI
 {
-    public static UIManager Instance;
-
-    public bool IsActiveCard { get; private set; }
+    public class UIManager : MonoSingleton<UIManager>
+    {
+        public bool IsActiveCard { get; private set; }
     
-    [field: SerializeField] public GameObject UseCardUI {get; private set;}
-    
-    private void Awake()
-    {
-        Instance = this;
-    }
+        [field: SerializeField] public GameObject UseCardUI {get; private set;}
 
-    private void Update()
-    {
-        if (IsActiveCard)
-            UseCardUI.SetActive(true);
-        else
-            UseCardUI.SetActive(false);
-    }
+        private void Update()
+        {
+            if (IsActiveCard)
+                UseCardUI.SetActive(true);
+            else
+                UseCardUI.SetActive(false);
+        }
 
-    public void CheckIsHoveringCard(bool isHoveringCard)
-    {
-        IsActiveCard = isHoveringCard;
+        public void CheckIsHoveringCard(bool isHoveringCard)
+        {
+            IsActiveCard = isHoveringCard;
+        }
     }
 }

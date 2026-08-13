@@ -1,5 +1,6 @@
 using Agents;
 using CoreLib;
+using Systems.TurnSystem;
 using UnityEngine;
 
 namespace Players
@@ -10,27 +11,30 @@ namespace Players
         
         #region Components
 
-        public AgentMovement AgentMovement { get; private set; }
+        public PlayerMovement PlayerMovement { get; private set; }
         public PlayerAimController PlayerAimController { get; private set; }
         public CheckWall[] WallCheckers {get; private set;}
         public SurfaceFollowModule SurfaceFollowModule { get; private set; }
+        
+        public FuelSystem FuelSystem { get; private set; }
     
         #endregion
 
         private void Awake()
         {
-            AgentMovement = GetComponentInChildren<AgentMovement>();
+            PlayerMovement = GetComponentInChildren<PlayerMovement>();
             PlayerAimController = GetComponentInChildren<PlayerAimController>();
             SurfaceFollowModule =  GetComponentInChildren<SurfaceFollowModule>();
             WallCheckers = GetComponentsInChildren<CheckWall>();
+            FuelSystem =  GetComponentInChildren<FuelSystem>();
         
             PlayerAimController.Init(this);
             SurfaceFollowModule.SetWallCheckers(WallCheckers);
         }
-    
+
         private void Update()
         {
-            AgentMovement?.SetMovementInput(PlayerInput.MoveInput.x);
+            PlayerMovement?.SetMovementInput(PlayerInput.MoveInput.x);
         }
     }
 }

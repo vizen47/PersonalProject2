@@ -1,4 +1,5 @@
     using DG.Tweening;
+    using Systems.TurnSystem;
     using UnityEngine;
     using UnityEngine.EventSystems;
     using UnityEngine.UI;
@@ -36,6 +37,8 @@
             
             public void OnPointerEnter(PointerEventData eventData)
             {
+                if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose || TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
+
                 CacheComponents();
                 
                 IsHovered = true;
@@ -49,6 +52,8 @@
 
             public void OnPointerExit(PointerEventData eventData)
             {
+                if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose || TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
+                
                 IsHovered = false;
                 UIManager.Instance.CheckIsHoveringCard(IsHovered);
 

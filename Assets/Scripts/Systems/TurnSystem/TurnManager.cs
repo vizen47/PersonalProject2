@@ -13,7 +13,6 @@ namespace Systems.TurnSystem
         public UnityEvent onWinEffect;
         public UnityEvent onLoseEffect;
         
-        [Header("PlayerControls")]
         [SerializeField] private PlayerAttackModule playerAttackModule;
         [SerializeField] private PlayerMovement playerMovement;
         [SerializeField] private HealthModule playerHealth;
@@ -25,13 +24,16 @@ namespace Systems.TurnSystem
             Win = 2,
             Lose = 3
         }
-        public NotifyValue<int> CurrentTurn { get; private set; }
+        
+        [field: SerializeField] public EnemyTurnController EnemyTurnController {get; private set;}
+        
         [field: SerializeField] public int MaxTurn { get; private set; }
+        
+        public NotifyValue<int> CurrentTurn { get; private set; }
         public NotifyValue<TurnState> CurrentState { get; private set; }
         
-        [field: SerializeField] public bool IsActing { get; private set; }
+        public bool IsActing { get; private set; }
 
-        [field: SerializeField] public EnemyTurnController EnemyTurnController {get; private set;}
 
         protected override void Awake()
         {
@@ -62,7 +64,6 @@ namespace Systems.TurnSystem
 
         private void InitTurn()
         {
-            MaxTurn = FindAnyObjectByType<Stage>().StageInfo.maxTurn;
             CurrentTurn.Value = 0;
             CurrentState.Value = TurnState.PlayerTurn;
         }

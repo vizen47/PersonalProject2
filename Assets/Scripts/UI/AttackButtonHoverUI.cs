@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Audio;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -24,6 +25,7 @@ namespace UI
         public void OnPointerEnter(PointerEventData eventData)
         {
             StartControlMotion();
+            HoverSound();
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -31,6 +33,11 @@ namespace UI
             StopControlMotion();
         }
 
+        private void HoverSound()
+        {
+            SoundManager.Instance.PlaySFXOnChannel(1, transform.position, SoundManager.Instance.HoverUI);
+        }
+        
         private void StartControlMotion()
         {
             rectA.DOAnchorPos(moveVecA, 0.5f).SetEase(Ease.OutExpo);

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2123969649720243774}
   - component: {fileID: 501751910149512653}
   - component: {fileID: 7108509971384541828}
+  - component: {fileID: 2435399789158726761}
   m_Layer: 9
   m_Name: FireFeedback
   m_TagString: Untagged
@@ -76,6 +77,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0.2, z: 0}
   impulse: {fileID: 3312346944136572868}
+--- !u!114 &2435399789158726761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1813243375894068947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912d1a59908f442bbaa2dcc97dc56223, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireSound: {fileID: 11400000, guid: 275267097282fb345b82da6387ac2fb1, type: 2}
 --- !u!1 &4054824468923456582
 GameObject:
   m_ObjectHideFlags: 0

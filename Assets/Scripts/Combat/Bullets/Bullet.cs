@@ -1,5 +1,4 @@
 using Effects;
-using Players;
 using Systems;
 using Systems.Pooling;
 using Systems.TurnSystem;
@@ -43,10 +42,15 @@ namespace Combat.Bullets
 
         protected virtual void Update()
         {
+            if (IsDead) return;
+
             _timer += Time.deltaTime;
-            
+
             if (_timer >= _lifeTime || _bulletScreen.IsOffscreen())
+            {
+                IsDead = true;
                 DestroyBullet();
+            }
         }
 
         protected virtual void Fire()
@@ -93,7 +97,7 @@ namespace Combat.Bullets
                 
                 GameManager.Instance.fuelSystem.Init();
             }
-
+            
             PoolManager.Instance.Push(this);
         }
     }

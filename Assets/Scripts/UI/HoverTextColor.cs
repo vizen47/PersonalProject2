@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Audio;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -18,6 +19,7 @@ namespace UI
         public void OnPointerEnter(PointerEventData eventData)
         {
             BrightText();
+            HoverSound();
         }
 
         public void OnPointerExit(PointerEventData eventData)
@@ -25,6 +27,11 @@ namespace UI
             ResetTextColor();
         }
 
+        private void HoverSound()
+        {
+            SoundManager.Instance.PlaySFXOnChannel(0, transform.position, SoundManager.Instance.HoverUI);
+        }
+        
         private void BrightText()
         {
             targetText.colorGradient = finishGradient;

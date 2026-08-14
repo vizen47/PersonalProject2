@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Audio;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -30,6 +31,7 @@ namespace UI
         private void Enter()
         {   
             _targetRect.DOScale(targetScale, duration).SetEase(Ease.OutExpo);
+            SoundManager.Instance.PlaySFXOnChannel(1, transform.position, SoundManager.Instance.HoverUI);
         }
 
         private void Exit()

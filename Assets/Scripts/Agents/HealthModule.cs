@@ -1,5 +1,5 @@
-﻿using CoreLib;
-using Systems;
+﻿using Combat;
+using CoreLib;
 using UnityEngine;
 
 namespace Agents

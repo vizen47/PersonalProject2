@@ -1,5 +1,4 @@
-﻿using Systems;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Combat.Bullets
 {
@@ -13,7 +12,8 @@ namespace Combat.Bullets
         protected override void Update()
         {
            base.Update(); 
-            
+           if (IsDead) return;
+           
             lastFrameVelocity = _rigid.linearVelocity; 
         }
 

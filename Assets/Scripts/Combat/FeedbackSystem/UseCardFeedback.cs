@@ -54,7 +54,7 @@ namespace Combat.FeedbackSystem
             cardListContainerUI.ArrangeCards();
             Destroy(parent);
         }
-
+        
         public override void CreateFeedback()
         {
             Dissolve();

@@ -1,4 +1,5 @@
 using CoreLib;
+using UI;
 using UnityEngine;
 
 namespace Players
@@ -22,6 +23,7 @@ namespace Players
 
         [field: SerializeField] public Rigidbody2D Rb { get; private set; }
         [SerializeField] private FuelSystem fuelSystem;
+        
         public bool CanMove { get; private set; } = true;
 
         public void SetMovementInput(float input)
@@ -36,7 +38,7 @@ namespace Players
         }
 
         public void FalseCanMove() => CanMove = false;
-        
+
         private void FixedUpdate()
         {
             IsGrounded.Value = CheckGround();

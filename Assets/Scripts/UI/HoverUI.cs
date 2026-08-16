@@ -30,13 +30,13 @@ namespace UI
 
         private void Enter()
         {   
-            _targetRect.DOScale(targetScale, duration).SetEase(Ease.OutExpo);
+            _targetRect.DOScale(targetScale, duration).SetEase(Ease.OutExpo).SetUpdate(true);
             SoundManager.Instance.PlaySFXOnChannel(1, transform.position, SoundManager.Instance.HoverUI);
         }
 
         private void Exit()
         {
-            _targetRect.DOScale(_startScale, duration).SetEase(Ease.OutExpo);
+            _targetRect.DOScale(_startScale, duration).SetEase(Ease.OutExpo).SetUpdate(true);
         }
     }
 }

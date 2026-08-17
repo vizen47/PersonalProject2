@@ -80,6 +80,13 @@ namespace UI
         private void NextLevelFadeIn()
         {
             fadeInOutImg.raycastTarget = true;
+
+            if (StageManager.Instance.currentStageNumber == 10)
+            {
+                fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).OnComplete(() => 
+                SceneManager.LoadScene($"Level_{StageManager.Instance.CurrentStage + 1}_{1}"));
+                return;
+            }
             
             StageManager.Instance.currentStageNumber++;
             fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).OnComplete(() => 

@@ -9167,6 +9167,7 @@ MonoBehaviour:
   winTextStr: Do you want to play next level??
   loseTextStr: Do you want to play again?
   targetText: {fileID: 1808329202}
+  typingSound: {fileID: 11400000, guid: 23ef3ce5dd4ecd747a69c79513e6191d, type: 2}
 --- !u!114 &1808329202
 MonoBehaviour:
   m_ObjectHideFlags: 0

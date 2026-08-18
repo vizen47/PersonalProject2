@@ -7,6 +7,10 @@ namespace Agents
     public class HealthModule : MonoBehaviour, IDamageable
     {
         private const int DefaultHealth = 100;
+
+        [Header("Body Parts")] 
+        [SerializeField] private GameObject range;
+        [SerializeField] private GameObject healthVisualGO;
         
         public NotifyValue<int> CurrentHealth { get; set; } = new NotifyValue<int>();
         [field: SerializeField] public int MaxHealth { get; private set; } = DefaultHealth;
@@ -39,6 +43,8 @@ namespace Agents
 
             if (next <= 0)
             {
+                range.SetActive(false);
+                healthVisualGO.SetActive(false);
                 agentDead.Dead();
 #if UNITY_EDITOR
                 Debug.Log($"{gameObject.transform.root.name}가 죽었습니다.");

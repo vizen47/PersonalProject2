@@ -285,8 +285,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d89feb3a9b8f4e55be0e6686c7d9bbf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <CurrentHealth>k__BackingField: 0
+  range: {fileID: 0}
+  healthVisualGO: {fileID: 334364696330544385}
   <MaxHealth>k__BackingField: 100
+  agentDead: {fileID: 0}
 --- !u!114 &1029052888887948506
 MonoBehaviour:
   m_ObjectHideFlags: 0

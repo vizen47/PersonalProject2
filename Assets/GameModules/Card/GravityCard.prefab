@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBC1C\uC0AC \uD6C4 1\uCD08 \uB4A4\uC5D0 \uC911\uB825\uC758 \uBC18\uB300
+  m_text: "\uBC1C\uC0AC \uD6C4 0.5\uCD08 \uB4A4\uC5D0 \uC911\uB825\uC758 \uBC18\uB300
     \uBC29\uD5A5\uC73C\uB85C \uB0A0\uAC11\uB2C8\uB2E4. (\uB370\uBBF8\uC9C0 100)"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5634b5e9dbc95a54ea0698ee9f61a220, type: 2}

@@ -42,6 +42,8 @@ namespace Players
 
         private void DrawRange()
         {
+            if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose || TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
+            
             if (PlayerInput.AimRangeInput)
             {
                 attackRange?.SetActive(true);
@@ -88,11 +90,11 @@ namespace Players
             
             if (projectile == null) return;
         
-            projectile.InitAndFire // 현재 쏠 차례가 된 총알의 정보(데미지, 힘, 넉백의 정도)를 가져와서 쓴다.
+            projectile.InitAndFire
             (
                 firePos: firePos,
                 firePower: CurrentPower.Value * 25
-            ); // 테스트 용 임시 하드코딩
+            );
         
             onFire?.Invoke();
 

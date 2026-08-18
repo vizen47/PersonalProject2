@@ -1,5 +1,6 @@
 using CoreLib;
 using Players;
+using Systems.TurnSystem;
 using UnityEngine;
 
 namespace Agents
@@ -30,7 +31,8 @@ namespace Agents
 
         private void RotateFirePos()
         {
-            if (playerController == null) return;
+            if (playerController == null || TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose
+                || TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
             
             if (playerController.PlayerInput.AimRangeInput)
             {

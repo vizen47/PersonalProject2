@@ -25,7 +25,7 @@ namespace Combat.Bullets
         [Header("Bullet Settings")]
         [field: SerializeField] public int Damage {get; private set;}
         protected Vector3 _fireDirection;
-        private BulletScreen  _bulletScreen;
+        protected BulletScreen  _bulletScreen;
         
         protected override void Awake()
         {

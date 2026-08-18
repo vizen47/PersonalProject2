@@ -8,6 +8,19 @@ namespace Combat.Bullets
     {
         [SerializeField] private Transform[] spawnPoint;
         [SerializeField] private PoolItemSO[] divideBullets;
+
+        protected override void Update()
+        {
+            if (IsDead) return;
+
+            _timer += Time.deltaTime;
+
+            if (_timer >= _lifeTime || _bulletScreen.IsOffscreen())
+            {
+                IsDead = true;
+                base.DestroyBullet();
+            }
+        }
         
         protected override void OnCollisionEnter2D(Collision2D collision)
         {

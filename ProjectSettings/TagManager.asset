@@ -41,5 +41,17 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: MaskVFX
+    uniqueID: 956640377
+    locked: 0
+  - name: Ground
+    uniqueID: 2443787457
+    locked: 0
+  - name: VFX
+    uniqueID: 1864651291
+    locked: 0
+  - name: UI
+    uniqueID: 424407359
+    locked: 0
   m_RenderingLayers:
   - Default

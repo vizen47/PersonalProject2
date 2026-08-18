@@ -5930,7 +5930,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.948159, g: 1, b: 0.4660377, a: 0.05882353}
+  m_Color: {r: 0.84313726, g: 0.8901961, b: 0.4627451, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -7351,7 +7351,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.948159, g: 1, b: 0.4660377, a: 0.05882353}
+  m_Color: {r: 0.84313726, g: 0.8901961, b: 0.4627451, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -14136,7 +14136,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.948159, g: 1, b: 0.4660377, a: 0.05882353}
+  m_Color: {r: 0.84313726, g: 0.8901961, b: 0.4627451, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -15273,7 +15273,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.948159, g: 1, b: 0.4660377, a: 0.05882353}
+  m_Color: {r: 0.84313726, g: 0.8901961, b: 0.4627451, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16538,7 +16538,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0.9490196, g: 1, b: 0.46666667, a: 0.05882353}
+  m_Color: {r: 0.84313726, g: 0.8901961, b: 0.4627451, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -16820,7 +16820,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1198475999}
   m_HandleRect: {fileID: 0}
@@ -17457,7 +17457,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.948159, g: 1, b: 0.4660377, a: 0.05882353}
+  m_Color: {r: 0.84313726, g: 0.8901961, b: 0.4627451, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -18890,7 +18890,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.948159, g: 1, b: 0.4660377, a: 0.05882353}
+  m_Color: {r: 0.84313726, g: 0.8901961, b: 0.4627451, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -19735,7 +19735,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.948159, g: 1, b: 0.4660377, a: 0.05882353}
+  m_Color: {r: 0.84313726, g: 0.8901961, b: 0.4627451, a: 0.05882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -21013,7 +21013,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1338629854}
   m_HandleRect: {fileID: 0}

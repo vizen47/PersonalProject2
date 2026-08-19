@@ -12,16 +12,16 @@ namespace UI
     {
         [SerializeField] private Image fadeInOutImg;
         [SerializeField] private float duration;
-
+        
         private void Start()
         {
             StartCoroutine(FadeOut());
         }
         
         public void FadeIn()
-        {
+        {   
             fadeInOutImg.raycastTarget = true;
-
+            
             #region  fadeIn
 
             // if (TurnManager.Instance != null)
@@ -81,7 +81,13 @@ namespace UI
         {
             fadeInOutImg.raycastTarget = true;
 
-            if (StageManager.Instance.currentStageNumber == 10)
+            if (StageManager.Instance.CurrentStage == 3 && StageManager.Instance.currentStageNumber == 10)
+            {
+                fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear)
+                    .OnComplete(() => SceneManager.LoadScene("MainMenuScene"));
+                return;
+            }
+            else if (StageManager.Instance.currentStageNumber == 10)
             {
                 fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).OnComplete(() => 
                 SceneManager.LoadScene($"Level_{StageManager.Instance.CurrentStage + 1}_{1}"));

@@ -3165,7 +3165,8 @@ PrefabInstance:
       value: InGameCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4501796211505062205, guid: f08e59b53cc43c446a51dea96f06666f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f08e59b53cc43c446a51dea96f06666f, type: 3}

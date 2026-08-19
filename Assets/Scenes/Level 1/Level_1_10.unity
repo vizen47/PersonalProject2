@@ -7995,7 +7995,7 @@ MonoBehaviour:
   playerMovement: {fileID: 1556694678}
   playerHealth: {fileID: 500512920}
   <EnemyTurnController>k__BackingField: {fileID: 761749025}
-  <MaxTurn>k__BackingField: 8
+  <MaxTurn>k__BackingField: 7
 --- !u!4 &1190163561
 Transform:
   m_ObjectHideFlags: 0

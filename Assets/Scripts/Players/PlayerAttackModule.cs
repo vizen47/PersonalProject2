@@ -73,6 +73,8 @@ namespace Players
         
         private void ShowAttackRange()
         {
+            if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose || TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
+            
             attackReach.transform.localScale = new Vector3(CurrentPower.Value,1, 1);
         }
 

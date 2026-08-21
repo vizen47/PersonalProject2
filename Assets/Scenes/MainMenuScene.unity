@@ -324,6 +324,13 @@ MonoBehaviour:
   soundPlayerItem: {fileID: 11400000, guid: 07af97f6a4e64484f9905bd7abf54a11, type: 2}
   <HoverUI>k__BackingField: {fileID: 11400000, guid: eefcd7187021bc7418dd5e62ee50a788, type: 2}
   <SelectUI>k__BackingField: {fileID: 11400000, guid: cc631aa99825c514d8e0267c4d058553, type: 2}
+  <BGM>k__BackingField:
+  - {fileID: 11400000, guid: bbbd65021ee28224a82eebdfc9509015, type: 2}
+  - {fileID: 11400000, guid: 664125136729662468598513e48ccf3f, type: 2}
+  - {fileID: 11400000, guid: d6c02f3a1e20c614ba8c6f381f427b93, type: 2}
+  - {fileID: 11400000, guid: 86307aaa7293c044a8d0bbf130412854, type: 2}
+  - {fileID: 11400000, guid: f0d57b87525a9d2419c16b978f97c20a, type: 2}
+  <MainBGM>k__BackingField: {fileID: 11400000, guid: c11168304daee5444855098404df00d6, type: 2}
   mixer: {fileID: 24100000, guid: 573c9da58e791254cad0a7cea0bad293, type: 2}
 --- !u!1 &62381374
 GameObject:
@@ -644,6 +651,7 @@ GameObject:
   - component: {fileID: 105729951}
   - component: {fileID: 105729950}
   - component: {fileID: 105729953}
+  - component: {fileID: 105729954}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -727,6 +735,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 105729954}
+        m_TargetAssemblyTypeName: Systems.QuitGame, Assembly-CSharp
+        m_MethodName: QuitGameButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &105729951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,6 +799,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetScale: {x: 2, y: 2, z: 1}
   duration: 0.5
+--- !u!114 &105729954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 105729948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 816859ed530b403eb3ff342f0877c204, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &124255191
 GameObject:
   m_ObjectHideFlags: 0
@@ -4189,7 +4221,7 @@ Transform:
   m_GameObject: {fileID: 686989838}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -8.54, z: 0}
+  m_LocalPosition: {x: 0, y: -8.56, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -5545,6 +5577,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3066637693517518316, guid: fa7a53f3ce968b74c820ffe04ad65ec5, type: 3}
+    - {fileID: 3440606178191316148, guid: fa7a53f3ce968b74c820ffe04ad65ec5, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fa7a53f3ce968b74c820ffe04ad65ec5, type: 3}
@@ -8153,7 +8186,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TANK GAME
+  m_text: Tanky
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 674e19ec61df70d4195410c3114ca1fc, type: 2}
   m_sharedMaterial: {fileID: 78995835520310575, guid: 674e19ec61df70d4195410c3114ca1fc, type: 2}

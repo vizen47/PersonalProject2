@@ -27,7 +27,7 @@ namespace Systems.Pooling
 
         private IPoolable CreatePoolItem()
         {
-            GameObject gameObject = Object.Instantiate(_prefab,  _parentTrm);
+            GameObject gameObject = Object.Instantiate(_prefab, _parentTrm);
             gameObject.SetActive(false);
             gameObject.name = _poolable.PoolItem.ItemName;
             return gameObject.GetComponent<IPoolable>();
@@ -35,7 +35,7 @@ namespace Systems.Pooling
 
         public IPoolable Pop()
         {
-            IPoolable item = null;
+            IPoolable item;
             if (_pool.Count <= 0)
             {
                 item = CreatePoolItem();
@@ -43,9 +43,9 @@ namespace Systems.Pooling
             else
             {
                 item = _pool.Pop();
-                item.GameObject.SetActive(true);
             }
 
+            item.GameObject.SetActive(true);
             return item;
         }
 

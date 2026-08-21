@@ -41,10 +41,11 @@ namespace Audio
             _audioSource.clip = clipData.clip;
             _audioSource.loop = clipData.loop;  
 
+            _audioSource.Play();
+                
             if (!clipData.loop)
             {
                 float duration = _audioSource.clip.length;
-                _audioSource.Play();
                 StartCoroutine(DisableSoundTimer(duration));
             }
         }

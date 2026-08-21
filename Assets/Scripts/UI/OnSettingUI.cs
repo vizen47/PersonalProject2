@@ -5,7 +5,7 @@ namespace UI
 {
     public class OnSettingUI : MonoBehaviour
     {
-        [SerializeField] private GameObject target;
+        [SerializeField] private GameObject[] target;
 
         public bool IsSetting { get; private set; }
 
@@ -21,14 +21,17 @@ namespace UI
         {
             if (IsSetting)
             {
-                Time.timeScale = 1;
-                target.SetActive(false);
-                IsSetting = false;
+                foreach (var newTarget in target)
+                {
+                    Time.timeScale = 1;
+                    newTarget.SetActive(false);
+                    IsSetting = false;
+                }
             }
             else
             {
                 Time.timeScale = 0;
-                target.SetActive(true);
+                target[0].SetActive(true);
                 IsSetting = true;
             }
         }

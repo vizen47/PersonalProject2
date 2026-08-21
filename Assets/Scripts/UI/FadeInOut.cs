@@ -13,8 +13,11 @@ namespace UI
         [SerializeField] private Image fadeInOutImg;
         [SerializeField] private float duration;
         
+        private const string TutorialClearedKey = "TutorialCleared";
+        
         private void Start()
         {
+            Time.timeScale = 1;
             StartCoroutine(FadeOut());
         }
         
@@ -43,6 +46,13 @@ namespace UI
             
             #endregion
 
+            bool isClearedTutorial = PlayerPrefs.GetInt(TutorialClearedKey, 0) == 1;
+            
+            if (!isClearedTutorial)
+            {
+                GoTutorial();
+                return;
+            }
             if (TurnManager.Instance != null)
             {
                 if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win)
@@ -57,7 +67,7 @@ namespace UI
                 }
             }
 
-            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).OnComplete(() => 
+            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() => 
                 SceneManager.LoadScene($"Level_{StageManager.Instance.CurrentStage}_{StageManager.Instance.currentStageNumber}"));
         }
 
@@ -65,15 +75,23 @@ namespace UI
         {
             fadeInOutImg.raycastTarget = true;
             
-            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).OnComplete(() => 
+            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() => 
                 SceneManager.LoadScene($"MainMenuScene"));
         }
         
+        private void GoTutorial()
+        {
+            fadeInOutImg.raycastTarget = true;
+            
+            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() => 
+                SceneManager.LoadScene($"Level_1_0"));
+        }
+
         private void ContinueCurrentLevel()
         {
             fadeInOutImg.raycastTarget = true;
             
-            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).OnComplete(() => 
+            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() => 
                 SceneManager.LoadScene($"Level_{StageManager.Instance.CurrentStage}_{StageManager.Instance.currentStageNumber}"));
         }
         
@@ -81,21 +99,22 @@ namespace UI
         {
             fadeInOutImg.raycastTarget = true;
 
-            if (StageManager.Instance.CurrentStage == 3 && StageManager.Instance.currentStageNumber == 10)
+            if (StageManager.Instance.CurrentStage == 3 && StageManager.Instance.currentStageNumber == 10 ||
+                StageManager.Instance.CurrentStage == 1 && StageManager.Instance.currentStageNumber == 0)
             {
-                fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear)
+                fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).SetUpdate(true)
                     .OnComplete(() => SceneManager.LoadScene("MainMenuScene"));
                 return;
             }
             else if (StageManager.Instance.currentStageNumber == 10)
             {
-                fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).OnComplete(() => 
+                fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() => 
                 SceneManager.LoadScene($"Level_{StageManager.Instance.CurrentStage + 1}_{1}"));
                 return;
             }
             
             StageManager.Instance.currentStageNumber++;
-            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).OnComplete(() => 
+            fadeInOutImg.DOFade(1, duration).SetEase(Ease.Linear).SetUpdate(true).OnComplete(() => 
                 SceneManager.LoadScene($"Level_{StageManager.Instance.CurrentStage}_{StageManager.Instance.currentStageNumber}"));
         }
         
@@ -107,7 +126,7 @@ namespace UI
             
             fadeInOutImg.raycastTarget = false;
 
-            fadeInOutImg.DOFade(0, duration).SetEase(Ease.Linear);
+            fadeInOutImg.DOFade(0, duration).SetEase(Ease.Linear).SetUpdate(true);
         }
     }
 }

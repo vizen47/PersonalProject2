@@ -1,4 +1,7 @@
+    using System;
+    using Agents;
     using DG.Tweening;
+    using Systems;
     using Systems.TurnSystem;
     using UnityEngine;
     using UnityEngine.EventSystems;
@@ -14,6 +17,7 @@
             private Vector2 basePosition;
             private RectTransform rect;
             private Canvas _canvas;
+            
             public bool IsHovered { get; private set; }
             
             private void CacheComponents()
@@ -34,10 +38,20 @@
                 if (!IsHovered)
                     rect.anchoredPosition = basePosition;
             }
-            
+
+            private void Update()
+            {
+                if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose ||
+                    TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win)
+                {
+                    HoverOff();
+                }
+            }
+
             public void OnPointerEnter(PointerEventData eventData)
             {
-                if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose || TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
+                if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose ||
+                    TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
 
                 CacheComponents();
                 
@@ -53,13 +67,18 @@
             public void OnPointerExit(PointerEventData eventData)
             {
                 if (TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Lose || TurnManager.Instance.CurrentState.Value == TurnManager.TurnState.Win) return;
-                
+
+                HoverOff();
+            }
+
+            private void HoverOff()
+            {
                 IsHovered = false;
                 UIManager.Instance.CheckIsHoveringCard(IsHovered);
 
                 rect.DOKill();
                 _canvas.overrideSorting = false;
-                rect.DOAnchorPos(basePosition, duration).SetEase(Ease.OutCubic);
+                rect.DOAnchorPos(basePosition, duration).SetEase(Ease.OutCubic); 
             }
         }
     }

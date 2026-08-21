@@ -1,4 +1,5 @@
-﻿using Audio;
+﻿using System;
+using Audio;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -15,7 +16,12 @@ namespace UI
         {
             startGradient = targetText.colorGradient;
         }
-        
+
+        private void OnEnable()
+        {
+            ResetTextColor();
+        }
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             BrightText();
